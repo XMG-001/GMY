@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
+  <meta name="viewport" content="width=1280">
+  <title>GMY-管理平台</title>
+  <style>
+    body {
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script type="module" src="/src/main.js"></script>
+  <!-- <script>
+    (function() {
+      function scalePage() {
+        var screenWidth = window.innerWidth;
+        var baseWidth;
+        var scale;
+  
+        // 如果是电脑或者大屏幕
+        if (screenWidth >= 1280) {
+          baseWidth = screenWidth; // 设置为当前屏幕宽度
+          scale = 1; // 不进行缩放
+        } else {
+          baseWidth = 1280; // 基准宽度设置为1280px
+          scale = screenWidth / baseWidth; // 按比例缩放
+        }
+  
+        // 对 class 为 center-container 的容器进行缩放
+        var centerContainers = document.querySelectorAll('.center-container');
+        centerContainers.forEach(function(container) {
+          if(scale < 0.7){
+            scale = 0.7
+          }
+          container.style.transform = "scale(" + scale + ")";
+          // container.style.transformOrigin = "top center";
+          container.style.width = (scale)*1000 + "px";
+          container.style.height = (scale)*600 + "px";
+        });
+      }
+  
+      window.addEventListener('resize', scalePage);
+      window.addEventListener('load', scalePage);
+    })();
+  </script> -->
+  
+</body>
+
+</html>

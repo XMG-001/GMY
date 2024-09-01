@@ -1,0 +1,212 @@
+<template>
+  <el-tooltip class="box-item" effect="dark" content="设置" placement="bottom" :disabled="true">
+    <el-icon :size="22" class="is-loading" @click="handleChange">
+      <Setting />
+    </el-icon>
+  </el-tooltip>
+  <!-- 直接渲染给body下 -->
+  <Teleport to="body">
+    <el-drawer v-model="drawerVisible" :with-header="true" size="300px">
+      <template #header>
+        <span>设置</span>
+      </template>
+      <!-- 布局样式 -->
+      <el-divider class="divider" content-position="center">
+        <el-icon>
+          <Notification />
+        </el-icon>
+        布局样式
+      </el-divider>
+      <div class="layout-box">
+        <el-tooltip effect="dark" content="默认" placement="top" :show-after="200">
+          <div :class="['layout-item layout-vertical', { 'is-active': layout == 'default' }]"
+            @click="setLayout('default')">
+            <div class="layout-dark"></div>
+            <div class="layout-container">
+              <div class="layout-light"></div>
+              <div class="layout-content"></div>
+            </div>
+            <el-icon v-if="layout == 'default'">
+              <CircleCheckFilled />
+            </el-icon>
+          </div>
+        </el-tooltip>
+
+        <el-tooltip effect="dark" content="横向" placement="top" :show-after="200">
+          <div :class="['layout-item layout-transverse', { 'is-active': layout == 'transverse' }]"
+            @click="setLayout('transverse')">
+            <div class="layout-dark"></div>
+            <div class="layout-content"></div>
+            <el-icon v-if="layout == 'transverse'">
+              <CircleCheckFilled />
+            </el-icon>
+          </div>
+        </el-tooltip>
+
+        <!-- <el-tooltip effect="dark" content="经典" placement="top" :show-after="200">
+          <div :class="['layout-item layout-classic', { 'is-active': layout == 'classic' }]"
+            @click="setLayout('classic')">
+            <div class="layout-dark"></div>
+            <div class="layout-container">
+              <div class="layout-light"></div>
+              <div class="layout-content"></div>
+            </div>
+            <el-icon v-if="layout == 'classic'">
+              <CircleCheckFilled />
+            </el-icon>
+          </div>
+        </el-tooltip>
+        <el-tooltip effect="dark" content="分栏" placement="top" :show-after="200">
+          <div :class="['layout-item layout-columns', { 'is-active': layout == 'columns' }]"
+            @click="setLayout('columns')">
+            <div class="layout-dark"></div>
+            <div class="layout-light"></div>
+            <div class="layout-content"></div>
+            <el-icon v-if="layout == 'columns'">
+              <CircleCheckFilled />
+            </el-icon>
+          </div>
+        </el-tooltip> -->
+      </div>
+      <!-- 全局主题 -->
+      <el-divider class="divider" content-position="center">
+        <el-icon>
+          <ColdDrink />
+        </el-icon>
+        全局主题
+      </el-divider>
+      <div class="theme-item">
+        <span>主题颜色</span>
+        <el-color-picker v-model="primary" :predefine="colorList" @change="changePrimary" />
+      </div>
+      <div class="theme-item">
+        <span>暗黑模式</span>
+        <el-switch v-model="isDark" inline-prompt :active-icon="Sunny" :inactive-icon="Moon" />
+      </div>
+      <!-- <div class="theme-item">
+        <span>灰色模式</span>
+        <el-switch v-model="isGrey" />
+      </div>
+      <div class="theme-item mb40">
+        <span>色弱模式</span>
+        <el-switch v-model="isWeak" />
+      </div> -->
+      <!-- 界面设置 -->
+      <el-divider class="divider" content-position="center">
+        <el-icon>
+          <Setting />
+        </el-icon>
+        界面设置
+      </el-divider>
+      <div class="theme-item">
+        <span>菜单折叠</span>
+        <el-switch v-model="isCollapse" />
+      </div>
+      <div class="theme-item">
+        <span>菜单手风琴</span>
+        <el-switch v-model="accordion" />
+      </div>
+      <div class="theme-item">
+        <span>水印</span>
+        <el-switch v-model="watermark" />
+      </div>
+      <div class="theme-item">
+        <span>面包屑</span>
+        <el-switch v-model="breadcrumb" />
+      </div>
+      <div class="theme-item">
+        <span>面包屑图标</span>
+        <el-switch v-model="breadcrumbIcon" />
+      </div>
+      <div class="theme-item">
+        <span>标签栏</span>
+        <el-switch v-model="tabs" />
+      </div>
+      <div class="theme-item">
+        <span>标签栏图标</span>
+        <el-switch v-model="tabsIcon" />
+      </div>
+      <div class="theme-item">
+        <span>页脚</span>
+        <el-switch v-model="footer" />
+      </div>
+    </el-drawer>
+  </Teleport>
+</template>
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+import { storeToRefs } from "pinia";
+import useSettingStore from "@/store/modules/setting";
+import { DEFAULT_PRIMARY } from "@/config";
+import { useTheme } from "@/hooks/useTheme"
+import { Sunny, Moon } from "@element-plus/icons-vue";
+// import SwitchDark from "@/components/SwitchDark/index.vue";
+
+const { changePrimary, switchDark } = useTheme();
+
+const settingStore = useSettingStore();
+
+const {
+  drawerVisible,
+  layout,
+  primary,
+  isDark,
+  isGrey,
+  isWeak,
+  asideInverted,
+  headerInverted,
+  isCollapse,
+  accordion,
+  watermark,
+  breadcrumb,
+  breadcrumbIcon,
+  tabs,
+  tabsIcon,
+  footer
+} = storeToRefs(settingStore);
+
+// 预定义主题颜色
+const colorList = [
+  DEFAULT_PRIMARY,
+  "#daa96e",
+  "#0c819f",
+  "#409eff",
+  "#27ae60",
+  "#ff5c93",
+  "#e74c3c",
+  "#fd726d",
+  "#f39c12",
+  "#9b59b6"
+];
+
+// 设置布局方式
+const setLayout = (val) => {
+  settingStore.setGlobalState("layout", val);
+  settingStore.setGlobalState("isCollapse", false)
+};
+
+
+const handleChange = () => {
+  settingStore.setGlobalState("drawerVisible", true)
+}
+</script>
+
+<style lang="scss" scoped>
+@import "@/styles/modules/setting.scss";
+
+.el-icon.is-loading {
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+.el-drawer__header {
+  margin-bottom: 0 !important;
+}
+
+.el-drawer .el-drawer__header {
+  padding: 16px 20px;
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--el-border-color-lighter)
+}
+</style>

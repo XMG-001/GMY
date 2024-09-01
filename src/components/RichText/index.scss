@@ -1,0 +1,38 @@
+.el-button {
+  margin-top: 20px;
+}
+:deep(.el-dialog){
+  padding: 0;
+}
+:deep(.el-dialog__body) {
+  height: 700px !important;
+  padding: 15px 20px;
+  overflow: auto;
+}
+:deep(.el-dialog__header) {
+  padding: 15px 20px;
+  margin: 0;
+  border-bottom: 1px solid var(--el-border-color-lighter);
+}
+.editor-box{
+  box-sizing: border-box;
+}
+
+.content-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.content-box .text {
+  margin: 20px 0 30px;
+  font-size: 23px;
+  font-weight: 700;
+  color: var(--el-text-color-regular);
+}
+.content-box .el-descriptions {
+  width: 100%;
+  padding: 40px 0 0;
+}
+
+
