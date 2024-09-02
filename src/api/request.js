@@ -12,7 +12,7 @@ import { CODE_AUTH_ERROR } from "@/api/helper/codeStatus";
 import { API_URL, LOGIN_URL, HOME_URL } from "@/config";
 
 const request = axios.create({
-  baseURL: `${API_URL}/api`,
+  baseURL: import.meta.env.VITE_API_URL,
   timeout: 30000,
 });
 

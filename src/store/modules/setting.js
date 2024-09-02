@@ -1,18 +1,16 @@
-import { set } from "nprogress";
 import { defineStore } from "pinia";
 import { DEFAULT_PRIMARY } from "@/config";
 import { useTheme } from "@/hooks/useTheme";
 
-//最好用use开头
+// 最好用 use 开头
 const useSettingStore = defineStore("setting", {
-  // 修改默认值之后，需清除 localStorage 数据
   state: () => ({
     randomKey: 0,
-    //打开主题
+    // 打开主题
     drawerVisible: false,
     // 折叠菜单
     isCollapse: false,
-    //当前路由
+    // 当前路由
     currentPath: {},
     // 布局模式 (默认：default | 横向：transverse | 纵向：vertical | 分栏：columns)
     layout: "default",
@@ -49,9 +47,7 @@ const useSettingStore = defineStore("setting", {
     // 页脚
     footer: true,
   }),
-  //计算属性
   getters: {},
-  //方法
   actions: {
     async resetAll() {
       this.$reset();
@@ -63,46 +59,22 @@ const useSettingStore = defineStore("setting", {
       this.currentPath = val;
     },
     setRandomKey() {
-      this.randomKey = Math.floor(Math.random(1, 1000) * 100000);
+      this.randomKey = Math.floor(Math.random() * 100000); // 修正 Math.random 的用法
     },
-    //输入名字set
-    //setGlobalState("isCollapse", true)
-    setGlobalState(...args) {
-      this.$patch({ [args[0]]: args[1] });
+    setGlobalState(key, value) {
+      this.$patch({ [key]: value });
     },
   },
   persist: {
-    key: "gmy-setting", //存储名称
-    storage: sessionStorage, // 存储方式
-    // paths: [
-    //   "randomKey",
-    //   "drawerVisible",
-    //   "isCollapse",
-    //   "currentPath",
-    //   "layout",
-    //   "assemblySize",
-    //   "language",
-    //   "maximize",
-    //   "primary",
-    //   "isDark",
-    //   "isGrey",
-    //   "isWeak",
-    //   "asideInverted",
-    //   "headerInverted",
-    //   "accordion",
-    //   "watermark",
-    //   "breadcrumb",
-    //   "breadcrumbIcon",
-    //   "tabs",
-    //   "tabsIcon",
-    //   "footer",
-    // ], //指定 state 中哪些数据需要被持久化。[] 表示不持久化任何状态，undefined 或 null 表示持久化整个 state
-    //持久化储存后立马更新颜色
+    key: "gmy-setting", // 存储名称
+    storage: sessionStorage, // 如果需要使用 sessionStorage，请取消注释
+    // paths: [], // 如果不想持久化任何状态，请设置为 []。如果想持久化整个 state，设置为 undefined 或 null
     afterRestore: async (context) => {
       const settingStore = context.store;
       const { changePrimary } = useTheme();
-      changePrimary(settingStore.$state.primary);
+      await changePrimary(settingStore.primary); // 直接使用 primary 属性
     },
+    debug: true,
   },
 });
 

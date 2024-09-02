@@ -135,7 +135,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 import { storeToRefs } from "pinia";
 import useSettingStore from "@/store/modules/setting";
 import { DEFAULT_PRIMARY } from "@/config";

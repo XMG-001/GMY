@@ -1,21 +1,22 @@
 <template>
-  <el-dialog :title="dialogTitle" v-model="dialogVisible" @close="handleClose" draggable center>
-    <slot></slot>
-    <span slot="footer" class="dialog-footer">
-      <el-button @click="handleClose">{{ dialogClose }}</el-button>
-      <el-button type="primary" @click="handleSubmit">{{dialogSubmit}}</el-button>
-    </span>
-  </el-dialog>
-  <el-button  @click="xxx">djw</el-button>
+  <div> <el-dialog :title="dialogTitle" v-model="dialogVisible" @close="handleClose" draggable center>
+      <slot></slot>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleClose">{{ dialogClose }}</el-button>
+        <el-button type="primary" @click="handleSubmit">{{ dialogSubmit }}</el-button>
+      </span>
+    </el-dialog>
+    <el-button @click="xxx">djw</el-button>
+  </div>
 </template>
 
 <script setup>
 import { ref, watch, toRefs } from "vue";
 import cloneDeep from "lodash/cloneDeep";
-import {getTimeState} from '@/utils'
+import { getTimeState } from '@/utils'
 
-const xxx=()=>{
-  console.log("getTimeStat",getTimeState())
+const xxx = () => {
+  console.log("getTimeStat", getTimeState())
 }
 
 import {

@@ -57,9 +57,9 @@ router.beforeEach(async (to, from, next) => {
 router.afterEach((to, from, failure) => {
   const settingStore = useSettingStore();
   settingStore.setCurrentPath(to);
-  const route = useRoute();
-  const matched = route.matched;
-  console.log("守卫after", matched);
+  // const route = useRoute();
+  // const matched = route.matched;
+  // console.log("守卫after", matched);
   NProgress.done();
   if (failure) {
     console.log("路由跳转失败", failure);
