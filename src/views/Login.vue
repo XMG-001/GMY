@@ -32,19 +32,20 @@
 </template>
 
 <script setup>
-import { reactive, ref, shallowRef } from 'vue';
+import { reactive, ref, shallowRef,onMounted } from 'vue';
 import LoginForm from '@/components/LoginForm.vue';
 import RegisterForm from '@/components/RegisterForm.vue';
 import { DEFAULT_PRIMARY } from '@/config';
+import { ElNotification } from "element-plus";
 
-// function resizePage() {
-//     const body = document.getElementById('body');
-//     const scale = Math.min(window.innerWidth / 1000, window.innerHeight / 600);
-//     body.style.transform = `scale(${scale})`;
-// }
-
-// window.addEventListener('resize', resizePage);
-// window.addEventListener('load', resizePage);
+onMounted(() => {
+  ElNotification({
+    title: `公告`,
+    dangerouslyUseHTMLString: true,
+    message:`<i>平台处于演示状态，暂时禁用注册接口</i><br/><strong>用户名：test<i>（角色：二级管理员）</i></strong><br/><strong>密码：1234</strong>`,
+    duration:0,
+  });
+});
 
 const isLogging = ref(true);
 const isDark = ref(false);

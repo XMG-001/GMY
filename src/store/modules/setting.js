@@ -74,29 +74,29 @@ const useSettingStore = defineStore("setting", {
   persist: {
     key: "gmy-setting", //存储名称
     storage: sessionStorage, // 存储方式
-    paths: [
-      "randomKey",
-      "drawerVisible",
-      "isCollapse",
-      "currentPath",
-      "layout",
-      "assemblySize",
-      "language",
-      "maximize",
-      "primary",
-      "isDark",
-      "isGrey",
-      "isWeak",
-      "asideInverted",
-      "headerInverted",
-      "accordion",
-      "watermark",
-      "breadcrumb",
-      "breadcrumbIcon",
-      "tabs",
-      "tabsIcon",
-      "footer",
-    ], //指定 state 中哪些数据需要被持久化。[] 表示不持久化任何状态，undefined 或 null 表示持久化整个 state
+    // paths: [
+    //   "randomKey",
+    //   "drawerVisible",
+    //   "isCollapse",
+    //   "currentPath",
+    //   "layout",
+    //   "assemblySize",
+    //   "language",
+    //   "maximize",
+    //   "primary",
+    //   "isDark",
+    //   "isGrey",
+    //   "isWeak",
+    //   "asideInverted",
+    //   "headerInverted",
+    //   "accordion",
+    //   "watermark",
+    //   "breadcrumb",
+    //   "breadcrumbIcon",
+    //   "tabs",
+    //   "tabsIcon",
+    //   "footer",
+    // ], //指定 state 中哪些数据需要被持久化。[] 表示不持久化任何状态，undefined 或 null 表示持久化整个 state
     //持久化储存后立马更新颜色
     afterRestore: async (context) => {
       const settingStore = context.store;

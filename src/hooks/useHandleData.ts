@@ -36,7 +36,7 @@ export const useHandleData = (
         } else {
           ElMessage({
             type: 'error',
-            message: `${message}失败!`,
+            message: `${message}失败!${res.message}`,
           })
           console.log(res.message)
         }
