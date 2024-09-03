@@ -15,10 +15,10 @@ const useTabInfoStore = defineStore("tabInfo", {
       const menuInfoStore = useMenuInfoStore();
       const homeMenu = menuInfoStore.menuList[0] || {};
       return {
-        title: homeMenu.menuName || "Home",
+        title: homeMenu.menuName || "首页",
         name: "1",
-        path: homeMenu.path || "/",
-        icon: homeMenu.icon || "home",
+        path: homeMenu.path || "/home",
+        icon: homeMenu.icon || "HomeFilled",
         close: false,
       };
     },
