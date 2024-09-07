@@ -66,13 +66,12 @@ const useSettingStore = defineStore("setting", {
     },
   },
   persist: {
-    key: "gmy-setting", // 存储名称
-    storage: sessionStorage, // 如果需要使用 sessionStorage，请取消注释
-    // paths: [], // 如果不想持久化任何状态，请设置为 []。如果想持久化整个 state，设置为 undefined 或 null
+    key: "gmy-setting", 
+    storage: sessionStorage, 
     afterRestore: async (context) => {
       const settingStore = context.store;
       const { changePrimary } = useTheme();
-      await changePrimary(settingStore.primary); // 直接使用 primary 属性
+      await changePrimary(settingStore.primary); 
     },
     debug: true,
   },

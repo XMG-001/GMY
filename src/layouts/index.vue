@@ -40,7 +40,9 @@ import { getTimeState } from "@/utils";
 onMounted(() => {
   ElNotification({
     title: `${userInfoStore.userInfo.username},${getTimeState()}`,
-    //message:,
+    dangerouslyUseHTMLString: true,
+    message:`<p>1.平台处于演示状态，暂时<strong>禁用增删改接口</strong></p><p>2.目前仅<strong>角色管理</strong>开放</p>`,
+    duration:0,
   });
 });
 

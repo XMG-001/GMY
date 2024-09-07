@@ -7,8 +7,7 @@
             <div class="table-tool">
                 <el-button type="primary" @click="handleAdd()">新增</el-button>
                 <el-button type="info" :disabled="!isbatchDelete" @click="toggleSelection()">清除选中项</el-button>
-                <el-button v-if="hasRoles(['GMY'])" type="danger" :disabled="!isbatchDelete"
-                    @click="batchDelete()">批量删除</el-button>
+                <el-button v-if="true" type="danger" :disabled="!isbatchDelete" @click="batchDelete()">批量删除</el-button>
             </div>
         </div>
         <!-- 
@@ -35,7 +34,7 @@
                             <View />
                         </el-icon>查看
                     </el-button>
-                    <el-button :disabled="!hasRoles(['GMY'])" link type="primary" size="small"
+                    <el-button :disabled="!true" link type="primary" size="small"
                         @click="handleEdit(scope.$index, scope.row)">
                         <el-icon>
                             <EditPen />
@@ -46,7 +45,7 @@
                             <Refresh />
                         </el-icon>重置
                     </el-button>
-                    <el-button :disabled="!hasRoles(['GMY'])" link type="danger" size="small"
+                    <el-button :disabled="!true" link type="danger" size="small"
                         @click="handleDelete(scope.$index, scope.row)">
                         <el-icon>
                             <Delete />
@@ -59,7 +58,7 @@
             :initialData="editFormData" :formRules="editFormRules" @submit="handleEditFormSubmit">
         </FormDialog>
         <TreeFormDialog :dialogTitle="'分配菜单'" v-model:treeVisiable="treeVisiable" :treeDefineProps="treeDefineProps"
-            :treeAllData="allMenu" :treeDefaultData="treeDefaultData" :submitDisabled="hasRoles(['GMY'])"
+            :treeAllData="allMenu" :treeDefaultData="treeDefaultData" :submitDisabled="true"
             @submit="handleEditTreeSubmit">
         </TreeFormDialog>
     </div>
@@ -225,8 +224,8 @@ const selectDataInfo = async () => {
 };
 
 
-const editDialogTitle = ref<string>(); 
-const editVisible = ref<boolean>(false); 
+const editDialogTitle = ref<string>();
+const editVisible = ref<boolean>(false);
 const editFormData = ref<Object>();
 const editFormRules = ref<Object>();
 const editFormFields = ref<Array<any>>();
@@ -310,9 +309,9 @@ const fliterTreeIds = (allList: any[], partList: any[]): number[] => {
 
 //无变化不会产生值
 const handleEditTreeSubmit = async (data) => {
-    if (data) {
+    if (data && data.length > 0) {
         let roleId = editId.value;
-        let payloads = [];
+        let payloads: Array<any> = [];
         data.forEach(item => {
             let obj = {
                 roleId: roleId,
