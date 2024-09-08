@@ -1,5 +1,8 @@
 <template>
     <div class="container">
+    <div class="layer1"></div>
+    <div class="layer2"></div>
+    <div class="layer3"></div>
         <div class="center-container">
             <div class="login-register" :style="isLogging ? {} : { transform: 'translateX(400px)' }">
                 <transition name="slide-fade">
@@ -61,15 +64,17 @@ const changeBox = async () => {
 </script>
 
 <style lang="scss" scoped>
+@import url(@/styles/modules/Login.scss);
 $form-width: 300px;
 
 .container {
     height: 100vh;
-    background-color: #fff;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    background: radial-gradient(ellipse at bottom, #594795 0%, #090a0f 100%);
+    overflow: hidden;
 }
 
 .container::after{
@@ -80,7 +85,7 @@ $form-width: 300px;
     width: 100%;
     height:100%;
     box-sizing: border-box;
-    background-image: url('@/assets/login-bg-2.webp');
+    // background-image: url('@/assets/login-bg-2.webp');
     background-repeat: no-repeat;
     background-position: center;
     /* 背景图居中 */
@@ -112,15 +117,6 @@ $form-width: 300px;
     background-color: transparent;
     transition: transform 1s ease-in-out;
 }
-
-// .bottom-right{
-//     background: linear-gradient(to bottom right, #95bbfd, #f3d2ee);
-//     transition: background 1s ease-in-out;
-// }
-// .bottom-left{
-//     background: linear-gradient(to bottom left, #95bbfd, #f3d2ee);
-//     transition: background 1s ease-in-out;
-// }
 
 .cover {
     background: linear-gradient(to bottom right, #88aaff, #775ccc);

@@ -1,7 +1,7 @@
 import router from ".";
-import useUserInfoStore from "../store/modules/userInfo";
-import useSettingStore from "../store/modules/setting";
-import useMenuInfoStore from "../store/modules/menuInfo";
+import useUserInfoStore from "@/store/modules/userInfo";
+import useSettingStore from "@/store/modules/setting";
+import useMenuInfoStore from "@/store/modules/menuInfo";
 import NProgress from "nprogress";
 import {
   useRoute,
@@ -10,6 +10,7 @@ import {
 } from "vue-router";
 import { ElMessage } from "element-plus";
 import { initDynamicRouter } from "@/router/modules/handleRouter";
+import { HOME_URL } from "@/config";
 
 NProgress.configure({
   showSpinner: false, // 是否显示加载ico
@@ -40,7 +41,7 @@ router.beforeEach(async (to, from, next) => {
   }
   if (userInfoStore.isLogged === true && to.name === "Login") {
     console.log("守卫3");
-    return next({ path: from.path || "/home" });
+    return next({ path: from.path || HOME_URL });
   }
   if (userInfoStore.isLogged === true && to.name !== "Login") {
     if (load === 1) {
