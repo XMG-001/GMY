@@ -112,7 +112,7 @@ async function generateFiles(n) {
 
         files.push({
             name: name as string,
-            url: url[index] as string,
+            url: `${url[index]}?${random_number}` as string,
         });
     }
     // 将生成的文件列表赋值给 fileList
