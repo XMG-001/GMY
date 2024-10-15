@@ -51,12 +51,12 @@
         }
       }
       // 父元素伪元素尺寸和子元一样，设置flex: auto
-      .item-center::after {
-        content: '';
-        flex: auto; /* 填充剩余空间 */
-        max-width: 200px; /* 确保每个项目不会超过最大宽度 */
-        aspect-ratio: 1 / 1; /* 保持正方形比例 */
-      }
+      // .item-center::after {
+      //   content: '';
+      //   flex: auto; /* 填充剩余空间 */
+      //   max-width: 200px; /* 确保每个项目不会超过最大宽度 */
+      //   aspect-ratio: 1 / 1; /* 保持正方形比例 */
+      // }
       .item-center {
         display: flex;
         flex-wrap: wrap;
