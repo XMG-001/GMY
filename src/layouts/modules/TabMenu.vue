@@ -236,6 +236,6 @@ const removeTab = (targetName: string) => {
 </style>
 <style>
 .el-tabs--card > .el-tabs__header .el-tabs__item.is-active {
-  border-bottom: 2px solid var(--gmy-theme-color);
+  border-bottom: 2px solid var(--gmy-theme-color) !important;
 }
 </style>
