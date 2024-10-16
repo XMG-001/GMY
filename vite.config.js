@@ -10,6 +10,7 @@ import Components from "unplugin-vue-components/vite";
 // 提供了以下集中解析器，使用的时候，需要安装对应的UI库，这里以element为示例
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 import { visualizer } from "rollup-plugin-visualizer";
+import requireTransform from 'vite-plugin-require-transform';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -32,6 +33,10 @@ export default defineConfig({
   base: "/", //修改为'./' => '/'
   plugins: [
     vue(),
+    // 插件可以使用 requireTransform 插件，将require的文件进行转换
+    // requireTransform({
+    //   fileRegex: /.js$|.vue$/
+    // }),
     //gzip压缩
     viteCompression({
       verbose: true,

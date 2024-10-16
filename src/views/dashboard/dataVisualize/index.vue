@@ -29,7 +29,7 @@
                 :class="item.className"
               >
                 <div class="traffic-img">
-                  <img :src="item.imgSrc" alt="" />
+                  <img :src="getImageSrc(item.imgSrc)" alt="" />
                 </div>
                 <span class="item-value">{{ item.value }}</span>
                 <span class="traffic-name sle">{{ item.name }}</span>
@@ -85,61 +85,67 @@ const tab = [
 const trafficData = [
   {
     id: "gitee",
-    imgSrc:'/src/views/dashboard/dataVisualize/images/add_person.png',
+    imgSrc:'add_person.png',
     value: 2222,
     name: "Gitee 访问量",
     className: "gitee-traffic traffic-box",
   },
   {
     id: "github",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/add_team.png",
+    imgSrc: "add_team.png",
     value: 2222,
     name: "GitHub 访问量",
     className: "gitHub-traffic traffic-box",
   },
   {
     id: "today",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/today.png",
+    imgSrc: "today.png",
     value: 4567,
     name: "今日访问量",
     className: "today-traffic traffic-box",
   },
   {
     id: "yesterday",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/book_sum.png",
+    imgSrc: "book_sum.png",
     value: 1234,
     name: "昨日访问量",
     className: "yesterday-traffic traffic-box",
   },
   {
     id: "1",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/book_sum.png",
+    imgSrc: "book_sum.png",
     value: 1234,
     name: "昨日访问量",
     className: "yesterday-traffic traffic-box",
   },
   {
     id: "2",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/book_sum.png",
+    imgSrc: "book_sum.png",
     value: 1234,
     name: "昨日访问量",
     className: "yesterday-traffic traffic-box",
   },
   {
     id: "3",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/book_sum.png",
+    imgSrc: "book_sum.png",
     value: 1234,
     name: "昨日访问量",
     className: "yesterday-traffic traffic-box",
   },
   {
     id: "4",
-    imgSrc: "/src/views/dashboard/dataVisualize/images/book_sum.png",
+    imgSrc: "book_sum.png",
     value: 1234,
     name: "昨日访问量",
     className: "yesterday-traffic traffic-box",
   },
 ];
+
+//解决v-for循环src相对路径问题
+const getImageSrc = (imgSrc) => {
+  return new URL(`./images/${imgSrc}`, import.meta.url).href;
+};
+
 </script>
 
 <style scoped lang="scss">
