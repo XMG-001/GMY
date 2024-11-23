@@ -15,9 +15,12 @@ import requireTransform from 'vite-plugin-require-transform';
 // https://vitejs.dev/config/
 export default defineConfig({
   resolve: {
+    // alias: {
+    //   "@": path.resolve(__dirname, "src"),
+    // },
     alias: {
-      "@": path.resolve(__dirname, "src"),
-    },
+      '@': '/src'
+    }
   },
   // 配置代理
   // server: {

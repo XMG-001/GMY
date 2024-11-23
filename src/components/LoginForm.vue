@@ -8,7 +8,7 @@
     
   </form> -->
   <div class="lr-form">
-    <el-form ref="loginRef" :model="loginForm" :rules="rules">
+    <el-form ref="loginRef" :model="loginForm" :rules="rules" @keyup.enter="handleSubmit">
       <h1>登录账号</h1>
       <el-form-item prop="username">
         <el-input

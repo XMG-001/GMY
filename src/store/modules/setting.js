@@ -62,16 +62,87 @@ const useSettingStore = defineStore("setting", {
       this.randomKey = Math.floor(Math.random() * 100000); // 修正 Math.random 的用法
     },
     setGlobalState(key, value) {
-      this.$patch({ [key]: value });
-    },
+      if (typeof key !== "string" || key === "") {
+        return;
+      }
+      switch (key) {
+        case "randomKey":
+          this.randomKey = value;
+          break;
+        case "drawerVisible":
+          this.drawerVisible = value;
+          break;
+        case "isCollapse":
+          this.isCollapse = value;
+          break;
+        case "currentPath":
+          this.currentPath = value;
+          break;
+        case "layout":
+          this.layout = value;
+          break;
+        case "assemblySize":
+          this.assemblySize = value;
+          break;
+        case "language":
+          this.language = value;
+          break;
+        case "maximize":
+          this.maximize = value;
+          break;
+        case "primary":
+          this.primary = value;
+          break;
+        case "isDark":
+          this.isDark = value;
+          break;
+        case "isGrey":
+          this.isGrey = value;
+          break;
+        case "isWeak":
+          this.isWeak = value;
+          break;
+        case "asideInverted":
+          this.asideInverted = value;
+          break;
+        case "headerInverted":
+          this.headerInverted = value;
+          break;
+        case "accordion":
+          this.accordion = value;
+          break;
+        case "watermark":
+          this.watermark = value;
+          break;
+        case "breadcrumb":
+          this.breadcrumb = value;
+          break;
+        case "breadcrumbIcon":
+          this.breadcrumbIcon = value;
+          break;
+        case "tabs":
+          this.tabs = value;
+          break;
+        case "tabsIcon":
+          this.tabsIcon = value;
+          break;
+        case "footer":
+          this.footer = value;
+          break;
+        default:
+          console.warn(`Invalid key: ${key}`);
+          break;
+      }
+    }    
+    
   },
   persist: {
-    key: "gmy-setting", 
-    storage: sessionStorage, 
+    key: "gmy-setting",
+    storage: sessionStorage,
     afterRestore: async (context) => {
       const settingStore = context.store;
       const { changePrimary } = useTheme();
-      await changePrimary(settingStore.primary); 
+      await changePrimary(settingStore.primary);
     },
     debug: true,
   },

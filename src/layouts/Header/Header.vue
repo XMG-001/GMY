@@ -48,6 +48,8 @@ import { useFullscreen } from '@/hooks/useFullscreen'
 const settingStore = useSettingStore();
 
 const changeCollapse = () => {
+    console.log('折叠');
+    
     settingStore.setIsCollapse();
 }
 
